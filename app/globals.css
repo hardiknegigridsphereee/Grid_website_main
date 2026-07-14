@@ -1,0 +1,119 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-space-grotesk);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-jade: var(--jade);
+  --color-jade-bright: var(--jade-bright);
+  --color-jade-foreground: var(--jade-foreground);
+
+  --color-primary: var(--jade);
+  --color-primary-foreground: var(--jade-foreground);
+  --color-secondary: var(--card);
+  --color-secondary-foreground: var(--foreground);
+  --color-accent: var(--card);
+  --color-accent-foreground: var(--foreground);
+  --color-popover: var(--card);
+  --color-popover-foreground: var(--foreground);
+  --color-destructive: oklch(0.63 0.21 25);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 6px);
+  --radius-2xl: calc(var(--radius) + 14px);
+}
+
+:root {
+  color-scheme: dark;
+  --radius: 0.75rem;
+
+  --background: #05100a;
+  --foreground: #eef3ef;
+  --card: #0b1a12;
+  --card-foreground: #eef3ef;
+  --muted: #10241a;
+  --muted-foreground: #8ba396;
+  --border: rgba(238, 243, 239, 0.08);
+  --input: rgba(238, 243, 239, 0.12);
+  --ring: #2f9e6b;
+
+  --jade: #2fac74;
+  --jade-bright: #3ee59a;
+  --jade-foreground: #04120a;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    @apply bg-background;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: 'ss01', 'cv01';
+  }
+  h1, h2, h3, h4 {
+    @apply font-display tracking-tight text-balance;
+  }
+  ::selection {
+    background: var(--jade-bright);
+    color: var(--jade-foreground);
+  }
+}
+
+@layer utilities {
+  .text-gradient-jade {
+    background: linear-gradient(120deg, #eef3ef 0%, #7fe3b4 55%, #2fac74 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .glow-jade {
+    box-shadow: 0 0 60px -12px rgba(62, 229, 154, 0.45);
+  }
+  .grid-lines {
+    background-image:
+      linear-gradient(to right, rgba(238, 243, 239, 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(238, 243, 239, 0.04) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+}
+
+/* Slim jade scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #05100a;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(47, 172, 116, 0.35);
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(62, 229, 154, 0.6);
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee var(--marquee-duration, 40s) linear infinite;
+}
