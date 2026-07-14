@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, Hexagon } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 import { navLinks } from '@/data/content'
 import { cn } from '@/lib/utils'
 
@@ -18,12 +18,7 @@ export function Navbar() {
   }, [])
 
   return (
-    <motion.header
-      initial={{ y: -80, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      className="fixed inset-x-0 top-0 z-50 px-4 pt-4 sm:px-6"
-    >
+    <header className="fixed inset-x-0 top-0 z-50 px-4 pt-4 sm:px-6">
       <nav
         className={cn(
           'mx-auto flex max-w-7xl items-center justify-between rounded-full border px-5 py-3 transition-all duration-500',
@@ -33,8 +28,15 @@ export function Navbar() {
         )}
       >
         <a href="#top" className="flex items-center gap-2">
-          <Hexagon className="h-6 w-6 text-jade-bright" strokeWidth={1.6} />
-          <span className="font-display text-lg font-semibold tracking-tight">
+          {/* id used by IntroAnimation to measure this position and
+              animate the intro logo into it. */}
+          <img
+            id="navbar-logo"
+            src="/logo1-transparent.png"
+            alt="GridSphere"
+            className="h-8 w-8"
+          />
+          <span className="font-display text-lg font-semibold leading-none tracking-tight">
             GridSphere
           </span>
         </a>
@@ -99,6 +101,6 @@ export function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.header>
+    </header>
   )
 }
